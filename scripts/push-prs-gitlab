@@ -2,9 +2,22 @@
 
 set -euo pipefail
 
-git branchless sync --pull
+# The main commit might have leftover branches.
+mains="$(git branchless query -b 'main()')"
+main=""
+for branch in $mains; do
+    if [[ "$branch" =~ ^(main|master|develop|dev)$ ]]; then
+        main="$branch"
+        break
+    fi
+done
 
-main="$(git branchless query -b 'main()')"
+if [[ -z "$main" ]]; then
+    echo "No main branch found"
+    exit 1
+fi
+
+git branchless sync --pull
 
 branch_previous="$main"
 for branch in $(git branchless query -b 'stack()'); do
