@@ -22,6 +22,8 @@ git branchless sync --pull
 branch_previous="$main"
 for branch in $(git branchless query -b 'stack()'); do
     git push origin $branch --force-with-lease \
-        -o merge_request.create -o merge_request.target=$branch_previous
+        -o merge_request.create \
+        -o merge_request.target=$branch_previous \
+        -o merge_request.remove_source_branch
     branch_previous="$branch"
 done
