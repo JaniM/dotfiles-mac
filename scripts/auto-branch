@@ -1,0 +1,49 @@
+#!/usr/bin/env zsh
+# Automatically create branches for each commit in the query based on the commit
+# subject
+# Depends on slugify https://www.npmjs.com/package/slugify-cli
+# Inspired by https://github.com/pokey/dotfiles/blob/f7e3c8c632cd898406c8bc56fc4eb859d416e58e/bin/auto-branch
+set -euo pipefail
+
+prefix="janim/"
+query="${1:-stack()}"
+
+query="(($query) - branches()) & draft()"
+commits="$(git-branchless query -r "$query")"
+
+echo "Creating branches for the stack:"
+git-branchless query "$query"
+read -k "choice?Continue? [y/n] "
+if [[ ! $choice =~ ^[Yy]$ ]]; then
+    echo "Aborted"
+    exit 1
+fi
+echo
+
+while read -r commit <&3; do
+    echo
+    subject="$(git show -s --format='%s' "$commit")"
+    branch_name="$prefix$(slugify "$subject")"
+
+    # Let the user modify the branch name
+    echo "Commit: $commit"
+    echo "Subject: $subject"
+    echo "Branch: $branch_name"
+    read -k "choice?Accept? [y/[s]kip/[e]dit/[c]ancel] "
+    echo
+    if [[ $choice =~ ^[Ss]$ ]]; then
+        continue
+    elif [[ $choice =~ ^[Ee]$ ]]; then
+        vared -p "Branch name: " -c branch_name
+        if [[ -z $branch_name ]]; then
+            continue
+        fi
+    elif [[ $choice =~ ^[Cc]$ ]]; then
+        exit 1
+    elif [[ ! $choice =~ ^[Yy]$ ]]; then
+        echo "Invalid choice: $choice"
+        exit 1
+    fi
+
+    git branch "$branch_name" "$commit"
+done 3<<<"$commits"
