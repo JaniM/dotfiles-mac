@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+git-branchless query -b "(public() - main()) & branches()" \
+    | xargs git branch -D
+
