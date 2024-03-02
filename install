@@ -3,13 +3,32 @@
 dotfiles="$(realpath $(dirname $0))"
 sourcepath="$dotfiles/.zshrc"
 
+export DOTFILES=$dotfiles
+
+cd $dotfiles
+
+# Install hpmebrew if it doesn't exist already
+if ! type brew > /dev/null; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# Install necessities
+brew install --quiet bat git-branchless tldr zoxide fzf neovim ranger kitty
+
+# Install LunarVim
+if ! type lvim > /dev/null; then
+  LV_BRANCH='release-1.3/neovim-0.9' \
+    bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
+fi
+
+./setup/install-fonts.sh
 
 if [ ! -f ~/.tmux.conf ]; then
   echo "Link ~/.tmux.conf -> dotfiles/tmux.conf"
   ln -s $dotfiles/tmux.conf ~/.tmux.conf
 fi
 
-if [ ! -f ~/.config/lvim ]; then
+if [ ! -d ~/.config/lvim ]; then
   echo "Link ~/.config/lvim -> dotfiles/.config/lvim"
   ln -s $dotfiles/.config/lvim ~/.config/lvim
 fi
