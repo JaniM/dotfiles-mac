@@ -3,6 +3,12 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
+lvim.plugins = {
+  { "ellisonleao/gruvbox.nvim" },
+}
+
+lvim.colorscheme = "gruvbox"
+
 vim.api.nvim_create_user_command("Cppath", function()
   local path = vim.fn.expand("%:p")
   path = vim.fn.fnamemodify(path, ":~:.")
