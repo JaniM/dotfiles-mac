@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+
+dotfiles="$(realpath $(dirname $0))"
+sourcepath="$dotfiles/.zshrc"
+
+
+if [ ! -f ~/.tmux.conf ]; then
+  echo "Link ~/.tmux.conf -> dotfiles/tmux.conf"
+  ln -s $dotfiles/tmux.conf ~/.tmux.conf
+fi
+
+if [ ! -f ~/.config/lvim ]; then
+  echo "Link ~/.config/lvim -> dotfiles/.config/lvim"
+  ln -s $dotfiles/.config/lvim ~/.config/lvim
+fi
+
+if ! grep -q $sourcepath ~/.zshrc; then
+  echo "export DOTFILES=$dotfiles"
+  echo "export DOTFILES=$dotfiles" >> ~/.zshrc
+
+  echo "source .zshrc in ~/.zshrc"
+  echo "source $sourcepath" >> ~/.zshrc
+fi
+
