@@ -13,7 +13,7 @@ if ! type brew > /dev/null; then
 fi
 
 # Install necessities
-brew install --quiet bat git-branchless tldr zoxide fzf neovim ranger kitty
+brew install --quiet bat git-branchless tldr zoxide fzf neovim ranger kitty ripgrep
 
 # Install LunarVim
 if ! type lvim > /dev/null; then
