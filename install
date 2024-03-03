@@ -28,9 +28,15 @@ if [ ! -f ~/.tmux.conf ]; then
   ln -s $dotfiles/tmux.conf ~/.tmux.conf
 fi
 
+# TODO: Recognize directory vs a symlink
 if [ ! -d ~/.config/lvim ]; then
-  echo "Link ~/.config/lvim -> dotfiles/.config/lvim"
+  echo "link ~/.config/lvim -> dotfiles/.config/lvim"
   ln -s $dotfiles/.config/lvim ~/.config/lvim
+fi
+
+if [ ! -d ~/.config/kitty ]; then
+  echo "link ~/.config/kitty -> dotfiles/.config/kitty"
+  ln -s $dotfiles/.config/kitty ~/.config/kitty
 fi
 
 if ! grep -q $sourcepath ~/.zshrc; then
