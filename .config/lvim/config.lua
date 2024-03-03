@@ -5,6 +5,7 @@
 
 lvim.plugins = {
   { "ellisonleao/gruvbox.nvim" },
+  { "tpope/vim-surround" },
   {
     -- Note: copilut.lua depends on nodejs
     "zbirenbaum/copilot.lua",
@@ -22,7 +23,7 @@ lvim.plugins = {
         panel = { enabled = false }
       })
     end
-  }
+  },
 }
 
 lvim.colorscheme = "gruvbox"
