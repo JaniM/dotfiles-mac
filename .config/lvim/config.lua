@@ -24,7 +24,14 @@ lvim.plugins = {
       })
     end
   },
+  { "mfussenegger/nvim-jdtls" },
 }
+
+-- Disable default jdtls since it just doesn't work with lombok
+-- You still need to run :LspInstall jdtls, copy
+-- ~/.local/share/lvim/mason/packages/jdtls -> ~/.local/share/lvim/jdtls/
+-- and :LspUninstall jdtls
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "jdtls" })
 
 lvim.colorscheme = "gruvbox"
 
