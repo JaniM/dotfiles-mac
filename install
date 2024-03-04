@@ -16,7 +16,7 @@ fi
 brew install --quiet \
   bat git-branchless tldr zoxide \
   fzf neovim ranger kitty ripgrep node \
-  tmux
+  tmux black
 
 # Install LunarVim
 if ! type lvim > /dev/null; then

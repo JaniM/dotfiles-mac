@@ -34,6 +34,12 @@ lvim.plugins = {
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "jdtls" })
 
 lvim.colorscheme = "gruvbox"
+vim.opt.wrap = true
+
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { name = "black" },
+}
 
 vim.api.nvim_create_user_command("Cppath", function()
   local path = vim.fn.expand("%:p")
@@ -65,3 +71,4 @@ local on_tab = vim.schedule_wrap(function(fallback)
   end
 end)
 lvim.builtin.cmp.mapping["<Tab>"] = on_tab
+
