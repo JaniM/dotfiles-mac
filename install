@@ -14,9 +14,18 @@ fi
 
 # Install necessities
 brew install --quiet \
-  bat git-branchless tldr zoxide \
-  fzf neovim ranger kitty ripgrep node \
-  tmux black
+  kitty \
+  tmux \
+  neovim \
+  ranger \
+  bat \
+  tldr \
+  zoxide \
+  fzf \
+  ripgrep \
+  node \
+  black \
+  git-branchless
 
 # Install LunarVim
 if ! type lvim > /dev/null; then
