@@ -1,4 +1,6 @@
 #!/usr/bin/env zsh
+#
+set -euo pipefail
 
 dotfiles="$(realpath $(dirname $0))"
 sourcepath="$dotfiles/.zshrc"
@@ -35,6 +37,9 @@ if ! type lvim > /dev/null; then
 fi
 
 ./setup/install-fonts.sh
+
+echo "Configuring jj"
+./setup/jj.sh
 
 if [ ! -f ~/.tmux.conf ]; then
   echo "Link ~/.tmux.conf -> dotfiles/tmux.conf"
