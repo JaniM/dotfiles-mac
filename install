@@ -25,7 +25,8 @@ brew install --quiet \
   ripgrep \
   node \
   black \
-  git-branchless
+  git-branchless \
+  jj
 
 # Install LunarVim
 if ! type lvim > /dev/null; then
