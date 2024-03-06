@@ -2,7 +2,7 @@
 
 set -euxo pipefail
 
-jj config set --user user.name "Jani Musronen"
+jj config set --user user.name "Jani Mustonen"
 
 jj config set --user ui.paginate "never"
 jj config set --user ui.default-command log
