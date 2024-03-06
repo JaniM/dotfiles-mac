@@ -13,8 +13,8 @@ lvim.plugins = {
     config = function()
       local leap = require("leap")
       -- remove symbols from the default labels
-      leap.opts.safe_labels = 'sfnutSFNLHMUGTZ?'
-      leap.opts.labels = 'sfnjklhodweimbuyvrgtaqpcxzSFNJKLHODWEIMBUYVRGTAQPCXZ'
+      leap.opts.safe_labels = 'sfnut-SFNLHMUGTZ?'
+      leap.opts.labels = 'sfnjklhodweimbuyvrgtaqpcxz-SFNJKLHODWEIMBUYVRGTAQPCXZ'
       leap.add_default_mappings()
     end,
   },
@@ -64,6 +64,7 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "jdtls" })
 
 lvim.colorscheme = "gruvbox"
 vim.opt.wrap = true
+vim.opt.relativenumber = true
 vim.keymap.set('i', 'jj', '<Esc>')
 
 local formatters = require "lvim.lsp.null-ls.formatters"
