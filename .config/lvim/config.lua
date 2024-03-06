@@ -7,6 +7,18 @@ lvim.plugins = {
   { "ellisonleao/gruvbox.nvim" },
   { "tpope/vim-surround" },
   {
+    -- Press s for forward leap, S for backward leap
+    "ggandor/leap.nvim",
+    name = "leap",
+    config = function()
+      local leap = require("leap")
+      -- remove symbols from the default labels
+      leap.opts.safe_labels = 'sfnutSFNLHMUGTZ?'
+      leap.opts.labels = 'sfnjklhodweimbuyvrgtaqpcxzSFNJKLHODWEIMBUYVRGTAQPCXZ'
+      leap.add_default_mappings()
+    end,
+  },
+  {
     -- Note: copilut.lua depends on nodejs
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
