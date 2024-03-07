@@ -19,11 +19,19 @@ fi
 
 git branchless sync --pull
 
+stack="$(git branchless query -b 'stack()')"
+total_count="$(echo "$stack" | wc -l | tr -d ' ')"
+idx=0
 branch_previous="$main"
-for branch in $(git branchless query -b 'stack()'); do
+for branch in $stack; do
+    idx=$((idx + 1))
+    commit_title="$(git log --oneline -1 "$branch" | cut -d' ' -f2-)"
+    title="[$idx/$total_count] $commit_title"
+    echo "Pushing $branch with title: $title"
     git push origin $branch --force-with-lease \
         -o merge_request.create \
         -o merge_request.target=$branch_previous \
+        -o merge_request.title="$title" \
         -o merge_request.remove_source_branch
     branch_previous="$branch"
 done

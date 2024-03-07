@@ -65,6 +65,8 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "jdtls" })
 lvim.colorscheme = "gruvbox"
 vim.opt.wrap = true
 vim.opt.relativenumber = true
+
+-- KEYBINDINGS
 vim.keymap.set('i', 'jj', '<Esc>')
 
 local formatters = require "lvim.lsp.null-ls.formatters"
