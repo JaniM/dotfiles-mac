@@ -52,6 +52,11 @@ if [ ! -d ~/.config/lvim ]; then
   ln -s $dotfiles/.config/lvim ~/.config/lvim
 fi
 
+if [ ! -d ~/.config/nvim ]; then
+  echo "link ~/.config/nvim -> dotfiles/.config/nvim"
+  ln -s $dotfiles/.config/nvim ~/.config/nvim
+fi
+
 if [ ! -d ~/.config/kitty ]; then
   echo "link ~/.config/kitty -> dotfiles/.config/kitty"
   ln -s $dotfiles/.config/kitty ~/.config/kitty

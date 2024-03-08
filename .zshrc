@@ -1,10 +1,10 @@
 
-export EDITOR="lvim"
+export EDITOR="nvim"
 export PATH="$DOTFILES/scripts:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
-alias v="lvim"
-alias vim="lvim"
+alias v="nvim"
+alias vim="nvim"
 alias s="tmux-sessionizer"
 
 alias git='git-branchless wrap --'
