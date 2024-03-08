@@ -15,19 +15,6 @@ return {
     },
   },
 
-  {
-    -- Press s for forward leap, S for backward leap
-    "ggandor/leap.nvim",
-    name = "leap",
-    config = function()
-      local leap = require("leap")
-      -- remove symbols from the default labels
-      leap.opts.safe_labels = "sfnut-SFNLHMUGTZ?"
-      leap.opts.labels = "sfnjklhodweimbuyvrgtaqpcxz-SFNJKLHODWEIMBUYVRGTAQPCXZ"
-      leap.add_default_mappings()
-    end,
-  },
-
   -- Note: copilut.lua depends on nodejs
   {
     "zbirenbaum/copilot.lua",
