@@ -30,12 +30,6 @@ brew install --quiet \
   git-branchless \
   jj
 
-# Install LunarVim
-if ! type lvim > /dev/null; then
-  LV_BRANCH='release-1.3/neovim-0.9' \
-    bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
-fi
-
 ./setup/install-fonts.sh
 
 echo "Configuring jj"
@@ -47,9 +41,10 @@ if [ ! -f ~/.tmux.conf ]; then
 fi
 
 # TODO: Recognize directory vs a symlink
-if [ ! -d ~/.config/lvim ]; then
-  echo "link ~/.config/lvim -> dotfiles/.config/lvim"
-  ln -s $dotfiles/.config/lvim ~/.config/lvim
+if [ -d ~/.config/lvim ]; then
+  echo "Uninstall LunarVim"
+  rm ~/.config/lvim
+  bash ~/.local/share/lunarvim/lvim/utils/installer/uninstall.sh
 fi
 
 if [ ! -d ~/.config/nvim ]; then
