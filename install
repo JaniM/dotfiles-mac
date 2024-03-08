@@ -41,11 +41,6 @@ if [ ! -f ~/.tmux.conf ]; then
 fi
 
 # TODO: Recognize directory vs a symlink
-if [ -d ~/.config/lvim ]; then
-  echo "Uninstall LunarVim"
-  rm ~/.config/lvim
-  bash ~/.local/share/lunarvim/lvim/utils/installer/uninstall.sh
-fi
 
 if [ ! -d ~/.config/nvim ]; then
   echo "link ~/.config/nvim -> dotfiles/.config/nvim"
