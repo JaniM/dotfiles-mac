@@ -1,34 +1,38 @@
+# config = the whole home-manager configuration
 { config, pkgs, lib, ... }:
 
-{
+let
+  dotfiles = "${config.home.homeDirectory}/.config/home-manager";
+  dotfilesLink = path: 
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${path}";
+
+in {
   nix = {
     package = pkgs.nix;
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
-  home.packages = [
-    pkgs.nodejs_21
-    pkgs.neovim
+  home.packages = with pkgs; [
+    nodejs_21
+    neovim
 
     # Utilities
-    pkgs.ranger
-    pkgs.bat
-    pkgs.tldr
-    pkgs.fzf
-    pkgs.ripgrep
-    pkgs.jq
-    pkgs.git-branchless
-    pkgs.jujutsu
+    ranger
+    bat
+    tldr
+    fzf
+    ripgrep
+    jq
+    git-branchless
+    jujutsu
 
     # Fonts
-    (pkgs.nerdfonts.override { fonts = [ "Noto" ]; })
+    (nerdfonts.override { fonts = [ "Noto" ]; })
   ];
 
   home.file = {
     # Allow live ediiing of the configuration
-    ".config/nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/.config/nvim";
-    };
+    ".config/nvim".source = dotfilesLink ".config/nvim";
   };
 
   home.sessionVariables = {
@@ -90,7 +94,7 @@
     home-manager.enable = true;
   };
 
-  # Install MacOS applications to the user environment if the targetPlatform is Darwin
+  # Install MacOS applications to the user environment
   home.file."Applications/home-manager".source = let
     apps = pkgs.buildEnv {
       name = "home-manager-applications";

@@ -1,8 +1,7 @@
 {
-  description = "Home Manager configuration of janimustonen";
+  description = "Home Manager configuration";
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -24,6 +23,7 @@
 
           modules = [ ./home.nix ./jazz.nix ];
         };
+
         "janimustonen@treble" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
 

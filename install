@@ -6,8 +6,11 @@ dotfiles="$(realpath $(dirname $0))"
 cd $dotfiles
 
 # Install hpmebrew if it doesn't exist already
-if ! type brew > /dev/null; then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if [[ "$(uname)" == "Darwin" ]]; then
+  if ! type brew > /dev/null; then
+    echo "Installing brew"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
 fi
 
 if ! type nix-channel > /dev/null; then
