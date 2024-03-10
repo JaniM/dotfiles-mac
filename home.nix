@@ -37,6 +37,10 @@
     };
   };
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
+
   fonts.fontconfig.enable = true;
 
   programs = {
@@ -64,6 +68,7 @@
       shellAliases = {
         "vim" = "nvim";
         "git" = "git-branchless wrap --";
+        "update" = "~/.config/home-manager/install";
       };
       history.size = 10000;
       history.path = "${config.xdg.dataHome}/zsh/history";
@@ -79,17 +84,11 @@
       '';
     };
 
-    zoxide = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    thefuck.enable = true;
+    zoxide.enable = true;
 
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
-  };
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
   };
 
   # Install MacOS applications to the user environment if the targetPlatform is Darwin
