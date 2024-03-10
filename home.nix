@@ -27,7 +27,7 @@
   home.file = {
     # Allow live ediiing of the configuration
     ".config/nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink .config/nvim;
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/.config/nvim";
     };
   };
 
