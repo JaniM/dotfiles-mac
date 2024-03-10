@@ -16,6 +16,7 @@
     pkgs.tldr
     pkgs.fzf
     pkgs.ripgrep
+    pkgs.jq
     pkgs.git-branchless
     pkgs.jujutsu
 
@@ -79,6 +80,11 @@
 
     thefuck.enable = true;
     zoxide.enable = true;
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
 
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
