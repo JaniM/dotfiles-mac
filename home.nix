@@ -26,6 +26,7 @@
     pkgs.ripgrep
     pkgs.git-branchless
     pkgs.jujutsu
+    pkgs.tree
 
     # Fonts
     (pkgs.nerdfonts.override { fonts = [ "Noto" ]; })
