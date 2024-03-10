@@ -3,10 +3,6 @@
 set -euo pipefail
 
 dotfiles="$(realpath $(dirname $0))"
-sourcepath="$dotfiles/.zshrc"
-
-export DOTFILES=$dotfiles
-
 cd $dotfiles
 
 # Install hpmebrew if it doesn't exist already
@@ -14,8 +10,17 @@ if ! type brew > /dev/null; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+if ! type home-manager > /dev/null; then
+  echo "Installing home-manager"
+  sh <(curl -L https://nixos.org/nix/install)
+  nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
+  nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+  nix-channel --update
+  nix-shell '<home-manager>' -A install
+fi
+
 # Install necessities
-brew install --quiet \
+brew uninstall --quiet \
   kitty \
   tmux \
   neovim \
@@ -28,35 +33,8 @@ brew install --quiet \
   node \
   black \
   git-branchless \
-  jj
-
-./setup/install-fonts.sh
+  jj || true
 
 echo "Configuring jj"
 ./setup/jj.sh
-
-if [ ! -f ~/.tmux.conf ]; then
-  echo "Link ~/.tmux.conf -> dotfiles/tmux.conf"
-  ln -s $dotfiles/tmux.conf ~/.tmux.conf
-fi
-
-# TODO: Recognize directory vs a symlink
-
-if [ ! -d ~/.config/nvim ]; then
-  echo "link ~/.config/nvim -> dotfiles/.config/nvim"
-  ln -s $dotfiles/.config/nvim ~/.config/nvim
-fi
-
-if [ ! -d ~/.config/kitty ]; then
-  echo "link ~/.config/kitty -> dotfiles/.config/kitty"
-  ln -s $dotfiles/.config/kitty ~/.config/kitty
-fi
-
-if ! grep -q $sourcepath ~/.zshrc; then
-  echo "export DOTFILES=$dotfiles"
-  echo "export DOTFILES=$dotfiles" >> ~/.zshrc
-
-  echo "source .zshrc in ~/.zshrc"
-  echo "source $sourcepath" >> ~/.zshrc
-fi
 
