@@ -9,7 +9,8 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  home.packages = [
-    pkgs.discord
+  home.packages = with pkgs; [
+    discord
+    rustup
   ];
 }
