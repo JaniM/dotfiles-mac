@@ -24,6 +24,11 @@
 
           modules = [ ./home.nix ./jazz.nix ];
         };
+        "janimustonen@treble" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          modules = [ ./home.nix ./treble.nix ];
+        };
       };
     };
 }

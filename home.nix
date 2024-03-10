@@ -18,13 +18,13 @@
     pkgs.ripgrep
     pkgs.git-branchless
     pkgs.jujutsu
-    pkgs.tree
 
     # Fonts
     (pkgs.nerdfonts.override { fonts = [ "Noto" ]; })
   ];
 
   home.file = {
+    # Allow live ediiing of the configuration
     ".config/nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink .config/nvim;
     };
