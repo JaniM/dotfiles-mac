@@ -2,6 +2,7 @@
 { config, pkgs, lib, ... }:
 
 let
+  isDarwin = pkgs.stdenv.targetPlatform.isDarwin;
   dotfiles = "${config.home.homeDirectory}/.config/home-manager";
   dotfilesLink = path: 
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${path}";
@@ -33,6 +34,7 @@ in {
   home.file = {
     # Allow live ediiing of the configuration
     ".config/nvim".source = dotfilesLink ".config/nvim";
+    "scripts".source = dotfilesLink "scripts";
   };
 
   home.sessionVariables = {
@@ -77,7 +79,7 @@ in {
       };
 
       initExtra = ''
-        export PATH="$HOME/.config/home-manager/scripts:$PATH"
+        export PATH="$HOME/scripts:$PATH"
         export PATH="$HOME/.local/bin:$PATH"
       '';
     };
@@ -93,13 +95,4 @@ in {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
   };
-
-  # Install MacOS applications to the user environment
-  home.file."Applications/home-manager".source = let
-    apps = pkgs.buildEnv {
-      name = "home-manager-applications";
-      paths = config.home.packages;
-      pathsToLink = "/Applications";
-    };
-  in lib.mkIf pkgs.stdenv.targetPlatform.isDarwin "${apps}/Applications";
 }
