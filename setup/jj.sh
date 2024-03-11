@@ -8,7 +8,7 @@ jj config set --user ui.paginate "never"
 jj config set --user ui.default-command log
 
 jj config set --user revsets.log \
-  '@ | trunk() | (ancestors(immutable_heads().., 2) ~ ::(remote_branches() ~ branches()))'
+  '@ | trunk() | ancestors(branches(), 2) | (ancestors(immutable_heads().., 2) ~ ::(remote_branches() ~ branches()))'
 
 # Finds branches being worked on by x
 jj config set --user revset-aliases."work(x)" \

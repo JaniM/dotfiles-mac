@@ -52,6 +52,7 @@ in {
 
     tmux = {
       enable = true;
+      keyMode = "vi";
       extraConfig = lib.concatStrings [
         (builtins.readFile ./tmux-gruvbox.conf)
         (builtins.readFile ./tmux.conf)
