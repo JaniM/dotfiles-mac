@@ -2,6 +2,7 @@
   description = "Home Manager configuration";
 
   inputs = {
+    flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -9,26 +10,21 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
-    let
-      system = "aarch64-darwin";
-      pkgs = import nixpkgs {
-        system = system;
-        config.allowUnfree = true;
-      };
-    in {
-      homeConfigurations = {
-        "janimustonen@jazz" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          modules = [ ./home.nix ./jazz.nix ];
+  outputs = { self, nixpkgs, home-manager, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        home = custom: home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
+          modules = [ ./home.nix custom ];
         };
-
-        "janimustonen@treble" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          modules = [ ./home.nix ./treble.nix ];
+      in {
+        packages.homeConfigurations = {
+          "janimustonen@jazz" = home ./jazz.nix;
+          "janimustonen@treble" = home ./treble.nix;
         };
-      };
-    };
+      }
+    );
 }
