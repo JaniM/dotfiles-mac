@@ -17,6 +17,17 @@ return {
   },
 
   {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      window = {
+        mappings = {
+          ["l"] = "open",
+        },
+      },
+    },
+  },
+
+  {
     "hrsh7th/nvim-cmp",
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
