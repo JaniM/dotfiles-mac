@@ -8,92 +8,114 @@ let
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${path}";
 
 in {
-  nix = {
-    package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
+  options = {
+    identity = {
+      email = lib.mkOption { type = lib.types.str; };
+      name = lib.mkOption { type = lib.types.str; };
+    };
   };
-
-  home.packages = with pkgs; [
-    nodejs_21
-    neovim
-
-    # Utilities
-    ranger
-    bat
-    tldr
-    fzf
-    ripgrep
-    jq
-    git-branchless
-    jujutsu
-
-    # Fonts
-    (nerdfonts.override { fonts = [ "Noto" ]; })
-  ];
-
-  home.file = {
-    # Allow live ediiing of the configuration
-    ".config/nvim".source = dotfilesLink ".config/nvim";
-    "scripts".source = dotfilesLink "scripts";
-  };
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
-
-  fonts.fontconfig.enable = true;
-
-  programs = {
-    kitty = {
-      enable = true;
-      font.name = "Noto Mono Regular";
-      theme = "Gruvbox Material Dark Medium";
+  config = {
+    nix = {
+      package = pkgs.nix;
+      settings.experimental-features = [ "nix-command" "flakes" ];
     };
 
-    tmux = {
-      enable = true;
-      keyMode = "vi";
-      extraConfig = lib.concatStrings [
-        (builtins.readFile ./tmux-gruvbox.conf)
-        (builtins.readFile ./tmux.conf)
-      ];
+    home.packages = with pkgs; [
+      nodejs_21
+      neovim
+
+      # Utilities
+      ranger
+      bat
+      tldr
+      fzf
+      ripgrep
+      jq
+      git-branchless
+
+      # Fonts
+      (nerdfonts.override { fonts = [ "Noto" ]; })
+    ];
+
+    home.file = {
+      # Allow live ediiing of the configuration
+      ".config/nvim".source = dotfilesLink ".config/nvim";
+      "scripts".source = dotfilesLink "scripts";
     };
 
-    zsh = {
-      enable = true;
+    home.sessionVariables = {
+      EDITOR = "nvim";
+    };
 
-      enableCompletion = true;
-      enableAutosuggestions = true;
-      syntaxHighlighting.enable = true;
+    fonts.fontconfig.enable = true;
 
-      shellAliases = {
-        "vim" = "nvim";
-        "git" = "git-branchless wrap --";
-        "update" = "~/.config/home-manager/install";
-      };
-      history.size = 10000;
-      history.path = "${config.xdg.dataHome}/zsh/history";
-      oh-my-zsh = {
+    programs = {
+      kitty = {
         enable = true;
-        plugins = [ "git" "thefuck" ];
-        theme = "robbyrussell";
+        font.name = "Noto Mono Regular";
+        theme = "Gruvbox Material Dark Medium";
       };
 
-      initExtra = ''
-        export PATH="$HOME/scripts:$PATH"
-        export PATH="$HOME/.local/bin:$PATH"
-      '';
+      tmux = {
+        enable = true;
+        keyMode = "vi";
+        extraConfig = lib.concatStrings [
+          (builtins.readFile ./tmux-gruvbox.conf)
+          (builtins.readFile ./tmux.conf)
+        ];
+      };
+
+      zsh = {
+        enable = true;
+
+        enableCompletion = true;
+        enableAutosuggestions = true;
+        syntaxHighlighting.enable = true;
+
+        shellAliases = {
+          "vim" = "nvim";
+          "git" = "git-branchless wrap --";
+          "update" = "~/.config/home-manager/install";
+        };
+        history.size = 10000;
+        history.path = "${config.xdg.dataHome}/zsh/history";
+        oh-my-zsh = {
+          enable = true;
+          plugins = [ "git" "thefuck" ];
+          theme = "robbyrussell";
+        };
+
+        initExtra = ''
+          export PATH="$HOME/scripts:$PATH"
+          export PATH="$HOME/.local/bin:$PATH"
+        '';
+      };
+
+      thefuck.enable = true;
+      zoxide.enable = true;
+
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
+
+      jujutsu = {
+        enable = true;
+        settings = {
+          user = { inherit (config.identity) name email; };
+          ui.paginate = "never";
+          ui.default-command = "log";
+          revsets = {
+            log = "@ | trunk() | ancestors(branches(), 2) | (ancestors(immutable_heads().., 2) ~ ::(remote_branches() ~ branches()))";
+          };
+          revset-aliases = {
+            "work(x)" = "immutable_heads()..((immutable_heads().. & (author(x) | committer(x)))::)";
+          };
+        };
+      };
+
+      # Let Home Manager install and manage itself.
+      home-manager.enable = true;
     };
-
-    thefuck.enable = true;
-    zoxide.enable = true;
-
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
-
-    # Let Home Manager install and manage itself.
-    home-manager.enable = true;
   };
 }

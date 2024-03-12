@@ -1,6 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
+  identity = {
+    name = "Jani Mustonen";
+    email = "jani.mustonen@taitounited.fi";
+  };
+
   home.username = "janimustonen";
   home.homeDirectory = "/Users/janimustonen";
 

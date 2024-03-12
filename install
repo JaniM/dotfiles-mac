@@ -31,5 +31,4 @@ if ! type home-manager > /dev/null; then
 fi
 
 home-manager switch
-./setup/jj.sh
 
