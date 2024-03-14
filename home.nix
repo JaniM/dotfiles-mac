@@ -4,16 +4,21 @@
 let
   isDarwin = pkgs.stdenv.targetPlatform.isDarwin;
   dotfiles = "${config.home.homeDirectory}/.config/home-manager";
-  dotfilesLink = path: 
+  dotfilesLink = path:
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${path}";
 
 in {
+  imports = [
+    ./modules/jujutsu.nix
+  ];
+
   options = {
     identity = {
       email = lib.mkOption { type = lib.types.str; };
       name = lib.mkOption { type = lib.types.str; };
     };
   };
+
   config = {
     nix = {
       package = pkgs.nix;
@@ -21,7 +26,7 @@ in {
     };
 
     home.packages = with pkgs; [
-      nodejs_21
+      nodejs
       neovim
 
       # Utilities
@@ -97,21 +102,6 @@ in {
       direnv = {
         enable = true;
         nix-direnv.enable = true;
-      };
-
-      jujutsu = {
-        enable = true;
-        settings = {
-          user = { inherit (config.identity) name email; };
-          ui.paginate = "never";
-          ui.default-command = "log";
-          revsets = {
-            log = "@ | trunk() | ancestors(branches(), 2) | (ancestors(immutable_heads().., 2) ~ ::(remote_branches() ~ branches()))";
-          };
-          revset-aliases = {
-            "work(x)" = "immutable_heads()..((immutable_heads().. & (author(x) | committer(x)))::)";
-          };
-        };
       };
 
       # Let Home Manager install and manage itself.

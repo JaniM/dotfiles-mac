@@ -20,7 +20,8 @@
           };
           modules = [ ./home.nix custom ];
         };
-      in {
+      in
+      {
         packages.homeConfigurations = {
           "janimustonen@jazz" = home ./jazz.nix;
           "janimustonen@treble" = home ./treble.nix;
