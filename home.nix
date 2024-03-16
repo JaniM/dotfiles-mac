@@ -1,14 +1,15 @@
 # config = the whole home-manager configuration
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, modules, ... }:
 
 let
   isDarwin = pkgs.stdenv.targetPlatform.isDarwin;
-  dotfiles = "${config.home.homeDirectory}/.config/home-manager";
+  # TODO: I want a way to avoid hardcoding the path to the dotfiles
+  dotfiles = "${config.home.homeDirectory}/dotfiles";
   dotfilesLink = path:
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${path}";
 
 in {
-  imports = [
+  imports = modules ++ [
     ./modules/jujutsu.nix
   ];
 
@@ -20,11 +21,6 @@ in {
   };
 
   config = {
-    nix = {
-      package = pkgs.nix;
-      settings.experimental-features = [ "nix-command" "flakes" ];
-    };
-
     home.packages = with pkgs; [
       nodejs
       neovim
@@ -74,13 +70,13 @@ in {
         enable = true;
 
         enableCompletion = true;
-        enableAutosuggestions = true;
+        autosuggestion.enable = true;
         syntaxHighlighting.enable = true;
 
         shellAliases = {
           "vim" = "nvim";
           "git" = "git-branchless wrap --";
-          "update" = "~/.config/home-manager/install";
+          "update" = "${dotfiles}/install";
         };
         history.size = 10000;
         history.path = "${config.xdg.dataHome}/zsh/history";
