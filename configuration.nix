@@ -5,6 +5,13 @@
     [ pkgs.vim
     ];
 
+  homebrew = {
+    enable = true;
+    casks = [
+      "tidal"
+    ];
+  };
+
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 
