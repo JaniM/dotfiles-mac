@@ -7,8 +7,11 @@
 
   homebrew = {
     enable = true;
+    brews = [
+      "git"
+    ];
     casks = [
-      "tidal"
+      { name = "tidal"; greedy = true; }
     ];
   };
 
