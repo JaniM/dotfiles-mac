@@ -44,6 +44,7 @@ in {
     home.file = {
       # Allow live ediiing of the configuration
       ".config/nvim".source = dotfilesLink ".config/nvim";
+      ".config/karabiner".source = dotfilesLink ".config/karabiner";
       "scripts".source = dotfilesLink "scripts";
     };
 

@@ -14,6 +14,7 @@
     ];
   };
 
+  services.karabiner-elements.enable = true;
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 
