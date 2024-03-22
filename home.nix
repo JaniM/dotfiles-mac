@@ -3,6 +3,7 @@
 
 let
   isDarwin = pkgs.stdenv.targetPlatform.isDarwin;
+
   # TODO: I want a way to avoid hardcoding the path to the dotfiles
   dotfiles = "${config.home.homeDirectory}/dotfiles";
   dotfilesLink = path:
@@ -10,7 +11,9 @@ let
 
 in {
   imports = modules ++ [
+    ./modules/git.nix
     ./modules/jujutsu.nix
+    (import ./modules/zsh.nix { inherit dotfiles; })
   ];
 
   options = {
@@ -64,32 +67,6 @@ in {
           (builtins.readFile ./tmux-gruvbox.conf)
           (builtins.readFile ./tmux.conf)
         ];
-      };
-
-      zsh = {
-        enable = true;
-
-        enableCompletion = true;
-        autosuggestion.enable = true;
-        syntaxHighlighting.enable = true;
-
-        shellAliases = {
-          "vim" = "nvim";
-          "git" = "git-branchless wrap --";
-          "update" = "${dotfiles}/install";
-        };
-        history.size = 10000;
-        history.path = "${config.xdg.dataHome}/zsh/history";
-        oh-my-zsh = {
-          enable = true;
-          plugins = [ "git" "thefuck" ];
-          theme = "robbyrussell";
-        };
-
-        initExtra = ''
-          export PATH="$HOME/scripts:$PATH"
-          export PATH="$HOME/.local/bin:$PATH"
-        '';
       };
 
       thefuck.enable = true;
