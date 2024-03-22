@@ -1,5 +1,6 @@
 { pkgs, ... }:
 
+# See https://github.com/LnL7/nix-darwin/tree/master/modules
 {
   environment.systemPackages =
     [ pkgs.vim
@@ -31,5 +32,18 @@
   users.users.janimustonen = {
     name = "janimustonen";
     home = "/Users/janimustonen";
+  };
+
+  system.defaults = {
+    NSGlobalDomain.ApplePressAndHoldEnabled = false;
+    NSGlobalDomain.InitialKeyRepeat = 20;
+    NSGlobalDomain.KeyRepeat = 2;
+
+    dock.autohide = true;
+    dock.mru-spaces = false;
+    dock.orientation = "bottom";
+    dock.showhidden = true;
+
+    trackpad.Clicking = true;
   };
 }
