@@ -262,6 +262,28 @@
           "type" : "basic"
         }, {
           "from" : {
+            "key_code" : "e"
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "window-submode",
+              "value" : 3
+            }
+          }, {
+            "shell_command" : "osascript -e 'display notification \"A\" with title \"Window Execute\"'"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
             "key_code" : "f"
           },
           "to" : [ {
@@ -279,6 +301,32 @@
           },
           "to" : [ {
             "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --toggle float"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "r"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m space --rotate 90"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "b"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m space --balance"
           } ],
           "conditions" : [ {
             "name" : "window-mode",
@@ -663,6 +711,26 @@
           }, {
             "name" : "window-submode",
             "value" : 2,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "window execute mode",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "a"
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application \"Arc\" to make new window activate'"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 3,
             "type" : "variable_if"
           } ],
           "type" : "basic"

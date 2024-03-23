@@ -19,6 +19,21 @@ if ! type nix-channel > /dev/null; then
   exit 0
 fi
 
+# https://github.com/koekeishiya/yabai/wiki/Disabling-System-Integrity-Protection
+# If `csrutil status` returns "System Integrity Protection status: enabled."
+# then you need to disable it.
+
+if [[ "$(csrutil status)" == *"enabled"* ]]; then
+  echo "Warning: System Integrity Protection is enabled. This prevents yabai from working fully."
+  echo "See https://github.com/koekeishiya/yabai/wiki/Disabling-System-Integrity-Protection"
+fi
+
+if [[ "$(nvram boot-args | grep -c "\-arm64e_preview_abi")" == "0" ]]; then
+  echo "Warning: Enabling arm64e_preview_abi"
+  sudo nvram boot-args=-arm64e_preview_abi
+  echo "Reboot your system to apply changes."
+fi
+
 if ! type darwin-rebuild > /dev/null; then
   echo "Installing darwin-rebuild"
   nix run nix-darwin -- switch --flake $dotfiles

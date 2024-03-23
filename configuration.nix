@@ -23,15 +23,20 @@
     mouse_modifier = "fn";
     focus_follows_mouse = "autoraise";
     mouse_follows_focus = "off";
-    auto_balance = "on";
+    auto_balance = "off";
     window_placement    = "second_child";
-    window_opacity      = "off";
+    window_opacity      = "on";
+    active_window_opacity = 1;
+    normal_window_opacity = 0.9;
     top_padding         = 0;
     bottom_padding      = 0;
     left_padding        = 0;
     right_padding       = 0;
     window_gap          = 10;
   };
+  services.yabai.extraConfig = ''
+    yabai -m rule --add app='^System Preferences' manage=off
+  '';
 
   services.karabiner-elements.enable = true;
   services.nix-daemon.enable = true;

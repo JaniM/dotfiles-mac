@@ -7,6 +7,7 @@
       user = { inherit (config.identity) name email; };
       ui.paginate = "never";
       ui.default-command = "log";
+      ui.diff-editor = ":builtin";
       revsets = {
         log = ''
           @ | trunk()

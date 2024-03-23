@@ -5,7 +5,8 @@
           :window-mode {:key :comma
                         :afterup [{:set ["window-submode" 0]}]}}
  :templates {:yabai "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m %s"
-             :notif "osascript -e 'display notification \"%s\" with title \"%s\"'"}
+             :notif "osascript -e 'display notification \"%s\" with title \"%s\"'"
+             :arc "osascript -e 'tell application \"Arc\" to make new window activate'"}
  :main [{:des "Right option -> Right option + shift"
         :rules [[:right_option :!Sright_option]]}
 
@@ -30,8 +31,11 @@
          :rules [:window-mode
                  [:s [["window-submode" 1] [:notif "WASD" "Window Focus"]] ["window-submode" 0]]
                  [:w [["window-submode" 2] [:notif "WASD, 1-4" "Window Warp"]] ["window-submode" 0]]
+                 [:e [["window-submode" 3] [:notif "A" "Window Execute"]] ["window-submode" 0]]
                  [:f [:yabai "window --toggle zoom-fullscreen"]]
                  [:t [:yabai "window --toggle float"]]
+                 [:r [:yabai "space --rotate 90"]]
+                 [:b [:yabai "space --balance"]]
                  [:1 [:yabai "space --focus 1"] ["window-submode" 0]]
                  [:2 [:yabai "space --focus 2"] ["window-submode" 0]]
                  [:3 [:yabai "space --focus 3"] ["window-submode" 0]]
@@ -61,6 +65,10 @@
                  [:2 [:yabai "window --space 2 --focus"] ["window-submode" 2]]
                  [:3 [:yabai "window --space 3 --focus"] ["window-submode" 2]]
                  [:4 [:yabai "window --space 4 --focus"] ["window-submode" 2]]]}
+
+        {:des "window execute mode"
+         :rules [:window-mode
+                [:a [:arc] ["window-submode" 3]]]}
 
         {:des "Instant space switch"
         :rules [[:!Tright_arrow [:yabai "space --focus next"]]
