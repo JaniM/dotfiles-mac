@@ -1,0 +1,21 @@
+;; See https://github.com/yqrashawn/GokuRakuJoudo/blob/master/tutorial.md
+
+{:layers {:period-mode {:key :period}}
+ :main [{:des "Right option -> Right option + shift"
+        :rules [[:right_option :!Sright_option]]}
+
+        {:des "Double tap caps for caps, hold for command"
+         :rules [[:##caps_lock :caps_lock ["caps-pressed-once" 1]]
+                 [:##caps_lock [["caps-pressed-once" 1]] nil
+                               {:delayed {:invoked ["caps-pressed-once" 0]
+                                          :canceled ["caps-pressed-once" 0]}
+                               :held :left_command
+                               :params {:held 0}}]]}
+
+        {:des "period mode"
+         :rules [[:e :!S8  :period-mode]     ;; .e -> (
+                 [:r :!S9  :period-mode]     ;; .r -> )
+                 [:d :!O8  :period-mode]     ;; .d -> [
+                 [:f :!O9  :period-mode]     ;; .f -> ]
+                 [:c :!SO8 :period-mode]     ;; .c -> {
+                 [:v :!SO9 :period-mode]]}]} ;; .v -> }

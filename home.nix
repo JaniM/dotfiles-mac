@@ -37,6 +37,9 @@ in {
       jq
       git-branchless
 
+      # Karabiner Elements configuration
+      (if isDarwin then goku else pkgs.null)
+
       # Fonts
       (nerdfonts.override { fonts = [ "Noto" ]; })
     ];
@@ -45,6 +48,7 @@ in {
       # Allow live ediiing of the configuration
       ".config/nvim".source = dotfilesLink ".config/nvim";
       ".config/karabiner".source = dotfilesLink ".config/karabiner";
+      ".config/karabiner.edn".source = dotfilesLink ".config/karabiner.edn";
       "scripts".source = dotfilesLink "scripts";
     };
 
