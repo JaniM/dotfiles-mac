@@ -14,6 +14,25 @@
     ];
   };
 
+  # You have to disable System Integrity Protection to use yabai
+  # https://github.com/koekeishiya/yabai/wiki/Disabling-System-Integrity-Protection
+  services.yabai.enable = true;
+  services.yabai.enableScriptingAddition = true;
+  services.yabai.config = {
+    layout = "bsp";
+    mouse_modifier = "fn";
+    focus_follows_mouse = "autoraise";
+    mouse_follows_focus = "off";
+    auto_balance = "on";
+    window_placement    = "second_child";
+    window_opacity      = "off";
+    top_padding         = 0;
+    bottom_padding      = 0;
+    left_padding        = 0;
+    right_padding       = 0;
+    window_gap          = 10;
+  };
+
   services.karabiner-elements.enable = true;
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;

@@ -36,6 +36,31 @@
           "to_if_alone" : [ {
             "key_code" : "period"
           } ]
+        }, {
+          "type" : "basic",
+          "to" : [ {
+            "set_variable" : {
+              "name" : "window-mode",
+              "value" : 1
+            }
+          } ],
+          "from" : {
+            "key_code" : "comma"
+          },
+          "to_after_key_up" : [ {
+            "set_variable" : {
+              "name" : "window-mode",
+              "value" : 0
+            }
+          }, {
+            "set_variable" : {
+              "name" : "window-submode",
+              "value" : 0
+            }
+          } ],
+          "to_if_alone" : [ {
+            "key_code" : "comma"
+          } ]
         } ]
       }, {
         "description" : "Right option -> Right option + shift",
@@ -186,6 +211,484 @@
             "name" : "period-mode",
             "value" : 1,
             "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "window mode",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "s"
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "window-submode",
+              "value" : 1
+            }
+          }, {
+            "shell_command" : "osascript -e 'display notification \"WASD\" with title \"Window Focus\"'"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "w"
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "window-submode",
+              "value" : 2
+            }
+          }, {
+            "shell_command" : "osascript -e 'display notification \"WASD, 1-4\" with title \"Window Warp\"'"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "f"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --toggle zoom-fullscreen"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "t"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --toggle float"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "1"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m space --focus 1"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "2"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m space --focus 2"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "3"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m space --focus 3"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "4"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m space --focus 4"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "5"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m space --focus 5"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "6"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m space --focus 6"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "7"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m space --focus 7"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "8"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m space --focus 8"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "9"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m space --focus 9"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "0"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m space --focus 10"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "window focus mode",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "w"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --focus north"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "a"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --focus west"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "s"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --focus south"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "d"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --focus east"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "window warp mode",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "w"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --warp north"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 2,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "a"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --warp west"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 2,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "s"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --warp south"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 2,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "d"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --warp east"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 2,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "1"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --space 1 --focus"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 2,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "2"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --space 2 --focus"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 2,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "3"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --space 3 --focus"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 2,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "4"
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m window --space 4 --focus"
+          } ],
+          "conditions" : [ {
+            "name" : "window-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "window-submode",
+            "value" : 2,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "Instant space switch",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "right_arrow",
+            "modifiers" : {
+              "mandatory" : [ "left_control" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m space --focus next"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "left_arrow",
+            "modifiers" : {
+              "mandatory" : [ "left_control" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m space --focus prev"
           } ],
           "type" : "basic"
         } ]

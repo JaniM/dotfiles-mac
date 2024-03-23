@@ -1,6 +1,11 @@
+;; Run `goku` to apply changes
 ;; See https://github.com/yqrashawn/GokuRakuJoudo/blob/master/tutorial.md
 
-{:layers {:period-mode {:key :period}}
+{:layers {:period-mode {:key :period}
+          :window-mode {:key :comma
+                        :afterup [{:set ["window-submode" 0]}]}}
+ :templates {:yabai "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m %s"
+             :notif "osascript -e 'display notification \"%s\" with title \"%s\"'"}
  :main [{:des "Right option -> Right option + shift"
         :rules [[:right_option :!Sright_option]]}
 
@@ -13,9 +18,51 @@
                                :params {:held 0}}]]}
 
         {:des "period mode"
-         :rules [[:e :!S8  :period-mode]     ;; .e -> (
-                 [:r :!S9  :period-mode]     ;; .r -> )
-                 [:d :!O8  :period-mode]     ;; .d -> [
-                 [:f :!O9  :period-mode]     ;; .f -> ]
-                 [:c :!SO8 :period-mode]     ;; .c -> {
-                 [:v :!SO9 :period-mode]]}]} ;; .v -> }
+         :rules [:period-mode
+                 [:e :!S8]    ;; .e -> (
+                 [:r :!S9]    ;; .r -> )
+                 [:d :!O8]    ;; .d -> [
+                 [:f :!O9]    ;; .f -> ]
+                 [:c :!SO8]   ;; .c -> {
+                 [:v :!SO9]]} ;; .v -> }
+
+        {:des "window mode"
+         :rules [:window-mode
+                 [:s [["window-submode" 1] [:notif "WASD" "Window Focus"]] ["window-submode" 0]]
+                 [:w [["window-submode" 2] [:notif "WASD, 1-4" "Window Warp"]] ["window-submode" 0]]
+                 [:f [:yabai "window --toggle zoom-fullscreen"]]
+                 [:t [:yabai "window --toggle float"]]
+                 [:1 [:yabai "space --focus 1"] ["window-submode" 0]]
+                 [:2 [:yabai "space --focus 2"] ["window-submode" 0]]
+                 [:3 [:yabai "space --focus 3"] ["window-submode" 0]]
+                 [:4 [:yabai "space --focus 4"] ["window-submode" 0]]
+                 [:5 [:yabai "space --focus 5"] ["window-submode" 0]]
+                 [:6 [:yabai "space --focus 6"] ["window-submode" 0]]
+                 [:7 [:yabai "space --focus 7"] ["window-submode" 0]]
+                 [:8 [:yabai "space --focus 8"] ["window-submode" 0]]
+                 [:9 [:yabai "space --focus 9"] ["window-submode" 0]]
+                 [:0 [:yabai "space --focus 10"] ["window-submode" 0]]
+                 ]}
+
+        {:des "window focus mode"
+         :rules [:window-mode
+                 [:w [:yabai "window --focus north"] ["window-submode" 1]]
+                 [:a [:yabai "window --focus west"] ["window-submode" 1]]
+                 [:s [:yabai "window --focus south"] ["window-submode" 1]]
+                 [:d [:yabai "window --focus east"] ["window-submode" 1]]]}
+
+        {:des "window warp mode"
+         :rules [:window-mode
+                 [:w [:yabai "window --warp north"] ["window-submode" 2]]
+                 [:a [:yabai "window --warp west"] ["window-submode" 2]]
+                 [:s [:yabai "window --warp south"] ["window-submode" 2]]
+                 [:d [:yabai "window --warp east"] ["window-submode" 2]]
+                 [:1 [:yabai "window --space 1 --focus"] ["window-submode" 2]]
+                 [:2 [:yabai "window --space 2 --focus"] ["window-submode" 2]]
+                 [:3 [:yabai "window --space 3 --focus"] ["window-submode" 2]]
+                 [:4 [:yabai "window --space 4 --focus"] ["window-submode" 2]]]}
+
+        {:des "Instant space switch"
+        :rules [[:!Tright_arrow [:yabai "space --focus next"]]
+                [:!Tleft_arrow [:yabai "space --focus prev"]]]}
+]}
