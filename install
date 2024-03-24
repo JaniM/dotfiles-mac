@@ -23,7 +23,7 @@ fi
 # If `csrutil status` returns "System Integrity Protection status: enabled."
 # then you need to disable it.
 
-if [[ "$(csrutil status)" == *"enabled"* ]]; then
+if [[ "$(csrutil status | head -n 1)" == *"enabled"* ]]; then
   echo "Warning: System Integrity Protection is enabled. This prevents yabai from working fully."
   echo "See https://github.com/koekeishiya/yabai/wiki/Disabling-System-Integrity-Protection"
 fi
