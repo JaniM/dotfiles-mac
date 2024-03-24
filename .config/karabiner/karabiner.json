@@ -63,14 +63,301 @@
           } ]
         } ]
       }, {
-        "description" : "Right option -> Right option + shift",
+        "description" : "Double tap either option for option+shift",
         "manipulators" : [ {
+          "to_if_held_down" : [ {
+            "key_code" : "right_option",
+            "modifiers" : [ "left_shift" ]
+          } ],
           "from" : {
-            "key_code" : "right_option"
+            "key_code" : "right_option",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
           },
           "to" : [ {
             "key_code" : "right_option",
             "modifiers" : [ "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "option-pressed-once",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "to_if_held_down" : [ {
+            "key_code" : "left_option",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "from" : {
+            "key_code" : "left_option",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "left_option",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "option-pressed-once",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "to_if_held_down" : [ {
+            "key_code" : "left_option"
+          } ],
+          "to_delayed_action" : {
+            "to_if_invoked" : [ {
+              "set_variable" : {
+                "name" : "option-pressed-once",
+                "value" : 0
+              }
+            } ],
+            "to_if_canceled" : [ {
+              "set_variable" : {
+                "name" : "option-pressed-once",
+                "value" : 0
+              }
+            } ]
+          },
+          "parameters" : {
+            "basic.to_if_held_down_threshold_milliseconds" : 0
+          },
+          "from" : {
+            "key_code" : "left_option",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "option-pressed-once",
+              "value" : 1
+            }
+          } ],
+          "conditions" : [ {
+            "name" : "option-pressed-once",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "to_if_held_down" : [ {
+            "key_code" : "right_option"
+          } ],
+          "to_delayed_action" : {
+            "to_if_invoked" : [ {
+              "set_variable" : {
+                "name" : "option-pressed-once",
+                "value" : 0
+              }
+            } ],
+            "to_if_canceled" : [ {
+              "set_variable" : {
+                "name" : "option-pressed-once",
+                "value" : 0
+              }
+            } ]
+          },
+          "parameters" : {
+            "basic.to_if_held_down_threshold_milliseconds" : 0
+          },
+          "from" : {
+            "key_code" : "right_option",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "option-pressed-once",
+              "value" : 1
+            }
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "Double tap control for control+shift",
+        "manipulators" : [ {
+          "to_if_held_down" : [ {
+            "key_code" : "left_control",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "from" : {
+            "key_code" : "left_control",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "left_control",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "control-pressed-once",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "to_if_held_down" : [ {
+            "key_code" : "left_control"
+          } ],
+          "to_delayed_action" : {
+            "to_if_invoked" : [ {
+              "set_variable" : {
+                "name" : "control-pressed-once",
+                "value" : 0
+              }
+            } ],
+            "to_if_canceled" : [ {
+              "set_variable" : {
+                "name" : "control-pressed-once",
+                "value" : 0
+              }
+            } ]
+          },
+          "parameters" : {
+            "basic.to_if_held_down_threshold_milliseconds" : 0
+          },
+          "from" : {
+            "key_code" : "left_control",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "control-pressed-once",
+              "value" : 1
+            }
+          } ],
+          "conditions" : [ {
+            "name" : "control-pressed-once",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "Double tap either command for command+shift",
+        "manipulators" : [ {
+          "to_if_held_down" : [ {
+            "key_code" : "right_command",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "from" : {
+            "key_code" : "right_command",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "right_command",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "command-pressed-once",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "to_if_held_down" : [ {
+            "key_code" : "left_command",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "from" : {
+            "key_code" : "left_command",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "left_command",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "command-pressed-once",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "to_if_held_down" : [ {
+            "key_code" : "left_command"
+          } ],
+          "to_delayed_action" : {
+            "to_if_invoked" : [ {
+              "set_variable" : {
+                "name" : "command-pressed-once",
+                "value" : 0
+              }
+            } ],
+            "to_if_canceled" : [ {
+              "set_variable" : {
+                "name" : "command-pressed-once",
+                "value" : 0
+              }
+            } ]
+          },
+          "parameters" : {
+            "basic.to_if_held_down_threshold_milliseconds" : 0
+          },
+          "from" : {
+            "key_code" : "left_command",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "command-pressed-once",
+              "value" : 1
+            }
+          } ],
+          "conditions" : [ {
+            "name" : "command-pressed-once",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "to_if_held_down" : [ {
+            "key_code" : "right_command"
+          } ],
+          "to_delayed_action" : {
+            "to_if_invoked" : [ {
+              "set_variable" : {
+                "name" : "command-pressed-once",
+                "value" : 0
+              }
+            } ],
+            "to_if_canceled" : [ {
+              "set_variable" : {
+                "name" : "command-pressed-once",
+                "value" : 0
+              }
+            } ]
+          },
+          "parameters" : {
+            "basic.to_if_held_down_threshold_milliseconds" : 0
+          },
+          "from" : {
+            "key_code" : "right_command",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "set_variable" : {
+              "name" : "command-pressed-once",
+              "value" : 1
+            }
           } ],
           "type" : "basic"
         } ]
@@ -124,6 +411,32 @@
               "name" : "caps-pressed-once",
               "value" : 1
             }
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "terminal mode",
+        "manipulators" : [ {
+          "from" : {
+            "simultaneous" : [ {
+              "key_code" : "s"
+            }, {
+              "key_code" : "k"
+            } ],
+            "simultaneous_options" : {
+              "detect_key_down_uninterruptedly" : false,
+              "key_down_order" : "insensitive",
+              "key_up_order" : "insensitive",
+              "key_up_when" : "any"
+            }
+          },
+          "to" : [ {
+            "key_code" : "b",
+            "modifiers" : [ "left_control" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^net.kovidgoyal.kitty$" ]
           } ],
           "type" : "basic"
         } ]

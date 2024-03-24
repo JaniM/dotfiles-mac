@@ -7,8 +7,42 @@
  :templates {:yabai "PATH=/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:$PATH yabai -m %s"
              :notif "osascript -e 'display notification \"%s\" with title \"%s\"'"
              :arc "osascript -e 'tell application \"Arc\" to make new window activate'"}
- :main [{:des "Right option -> Right option + shift"
-        :rules [[:right_option :!Sright_option]]}
+ :applications {:terminal ["^net.kovidgoyal.kitty$"]}
+ :main [{:des "Double tap either option for option+shift"
+        :rules [[:##right_option :!Sright_option ["option-pressed-once" 1] {:held :!Sright_option}]
+                [:##left_option :!Sleft_option ["option-pressed-once" 1] {:held :!Sleft_option}]
+                [:##left_option [["option-pressed-once" 1]] ["option-pressed-once" 0]
+                         {:delayed {:invoked ["option-pressed-once" 0]
+                                     :canceled ["option-pressed-once" 0]}
+                          :held :left_option
+                          :params {:held 0}}]
+                [:##right_option [["option-pressed-once" 1]] nil
+                          {:delayed {:invoked ["option-pressed-once" 0]
+                                     :canceled ["option-pressed-once" 0]}
+                           :held :right_option
+                           :params {:held 0}}]]}
+
+        {:des "Double tap control for control+shift"
+        :rules [[:##left_control :!Sleft_control ["control-pressed-once" 1] {:held :!Sleft_control}]
+                [:##left_control [["control-pressed-once" 1]] ["control-pressed-once" 0]
+                  {:delayed {:invoked ["control-pressed-once" 0]
+                              :canceled ["control-pressed-once" 0]}
+                   :held :left_control
+                   :params {:held 0}}]]}
+
+        {:des "Double tap either command for command+shift"
+        :rules [[:##right_command :!Sright_command ["command-pressed-once" 1] {:held :!Sright_command}]
+                [:##left_command :!Sleft_command ["command-pressed-once" 1] {:held :!Sleft_command}]
+                [:##left_command [["command-pressed-once" 1]] ["command-pressed-once" 0]
+                  {:delayed {:invoked ["command-pressed-once" 0]
+                              :canceled ["command-pressed-once" 0]}
+                   :held :left_command
+                   :params {:held 0}}]
+                [:##right_command [["command-pressed-once" 1]] nil
+                   {:delayed {:invoked ["command-pressed-once" 0]
+                              :canceled ["command-pressed-once" 0]}
+                    :held :right_command
+                    :params {:held 0}}]]}
 
         {:des "Double tap caps for caps, hold for command"
          :rules [[:##caps_lock :caps_lock ["caps-pressed-once" 1]]
@@ -17,6 +51,9 @@
                                           :canceled ["caps-pressed-once" 0]}
                                :held :left_command
                                :params {:held 0}}]]}
+
+        {:des "terminal mode"
+         :rules [[[:s :k] :!Tb [:terminal]]]} ; s+k -> Ctrl+b
 
         {:des "period mode"
          :rules [:period-mode
