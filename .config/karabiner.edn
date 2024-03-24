@@ -53,10 +53,22 @@
                                :params {:held 0}}]]}
 
         {:des "terminal mode"
-         :rules [[[:s :k] :!Tb [:terminal]]]} ; s+k -> Ctrl+b
+         :rules [[[:s :k] :!Tb [:terminal]] ; s+k -> Ctrl+b
+                 [:s [:!Tb ["period-mode" 0]] [:terminal :period-mode]] ; .s -> Ctrl+b and release period-mode
+                 [:1 [:!Tb :1] [:terminal :period-mode]]
+                 [:2 [:!Tb :2] [:terminal :period-mode]]
+                 [:3 [:!Tb :3] [:terminal :period-mode]]
+                 [:4 [:!Tb :4] [:terminal :period-mode]]
+                 [:5 [:!Tb :5] [:terminal :period-mode]]
+                 [:6 [:!Tb :6] [:terminal :period-mode]]
+                 [:7 [:!Tb :7] [:terminal :period-mode]]
+                 [:8 [:!Tb :8] [:terminal :period-mode]]
+                 [:9 [:!Tb :9] [:terminal :period-mode]]
+                 [:0 [:!Tb :0] [:terminal :period-mode]]]}
 
         {:des "period mode"
          :rules [:period-mode
+                 [:tab :!Ttab] ;; tab -> ctrl+tab
                  [:e :!S8]    ;; .e -> (
                  [:r :!S9]    ;; .r -> )
                  [:d :!O8]    ;; .d -> [

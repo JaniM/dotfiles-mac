@@ -439,10 +439,236 @@
             "bundle_identifiers" : [ "^net.kovidgoyal.kitty$" ]
           } ],
           "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "s"
+          },
+          "to" : [ {
+            "key_code" : "b",
+            "modifiers" : [ "left_control" ]
+          }, {
+            "set_variable" : {
+              "name" : "period-mode",
+              "value" : 0
+            }
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^net.kovidgoyal.kitty$" ]
+          }, {
+            "name" : "period-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "1"
+          },
+          "to" : [ {
+            "key_code" : "b",
+            "modifiers" : [ "left_control" ]
+          }, {
+            "key_code" : "1"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^net.kovidgoyal.kitty$" ]
+          }, {
+            "name" : "period-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "2"
+          },
+          "to" : [ {
+            "key_code" : "b",
+            "modifiers" : [ "left_control" ]
+          }, {
+            "key_code" : "2"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^net.kovidgoyal.kitty$" ]
+          }, {
+            "name" : "period-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "3"
+          },
+          "to" : [ {
+            "key_code" : "b",
+            "modifiers" : [ "left_control" ]
+          }, {
+            "key_code" : "3"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^net.kovidgoyal.kitty$" ]
+          }, {
+            "name" : "period-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "4"
+          },
+          "to" : [ {
+            "key_code" : "b",
+            "modifiers" : [ "left_control" ]
+          }, {
+            "key_code" : "4"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^net.kovidgoyal.kitty$" ]
+          }, {
+            "name" : "period-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "5"
+          },
+          "to" : [ {
+            "key_code" : "b",
+            "modifiers" : [ "left_control" ]
+          }, {
+            "key_code" : "5"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^net.kovidgoyal.kitty$" ]
+          }, {
+            "name" : "period-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "6"
+          },
+          "to" : [ {
+            "key_code" : "b",
+            "modifiers" : [ "left_control" ]
+          }, {
+            "key_code" : "6"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^net.kovidgoyal.kitty$" ]
+          }, {
+            "name" : "period-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "7"
+          },
+          "to" : [ {
+            "key_code" : "b",
+            "modifiers" : [ "left_control" ]
+          }, {
+            "key_code" : "7"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^net.kovidgoyal.kitty$" ]
+          }, {
+            "name" : "period-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "8"
+          },
+          "to" : [ {
+            "key_code" : "b",
+            "modifiers" : [ "left_control" ]
+          }, {
+            "key_code" : "8"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^net.kovidgoyal.kitty$" ]
+          }, {
+            "name" : "period-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "9"
+          },
+          "to" : [ {
+            "key_code" : "b",
+            "modifiers" : [ "left_control" ]
+          }, {
+            "key_code" : "9"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^net.kovidgoyal.kitty$" ]
+          }, {
+            "name" : "period-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "0"
+          },
+          "to" : [ {
+            "key_code" : "b",
+            "modifiers" : [ "left_control" ]
+          }, {
+            "key_code" : "0"
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^net.kovidgoyal.kitty$" ]
+          }, {
+            "name" : "period-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
         } ]
       }, {
         "description" : "period mode",
         "manipulators" : [ {
+          "from" : {
+            "key_code" : "tab"
+          },
+          "to" : [ {
+            "key_code" : "tab",
+            "modifiers" : [ "left_control" ]
+          } ],
+          "conditions" : [ {
+            "name" : "period-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
           "from" : {
             "key_code" : "e"
           },

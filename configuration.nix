@@ -11,6 +11,7 @@
     brews = [];
     casks = [
       { name = "tidal"; greedy = true; }
+      { name = "obsidian"; greedy = true; }
     ];
   };
 
@@ -35,7 +36,7 @@
     window_gap          = 10;
   };
   services.yabai.extraConfig = ''
-    yabai -m rule --add app='^System Preferences' manage=off
+    yabai -m rule --add app='^System Settings$' manage=off
   '';
 
   services.karabiner-elements.enable = true;
