@@ -113,7 +113,13 @@
                  [:1 [:yabai "window --space 1 --focus"] ["window-submode" 2]]
                  [:2 [:yabai "window --space 2 --focus"] ["window-submode" 2]]
                  [:3 [:yabai "window --space 3 --focus"] ["window-submode" 2]]
-                 [:4 [:yabai "window --space 4 --focus"] ["window-submode" 2]]]}
+                 [:4 [:yabai "window --space 4 --focus"] ["window-submode" 2]]
+                 [:5 [:yabai "window --space 5 --focus"] ["window-submode" 2]]
+                 [:6 [:yabai "window --space 6 --focus"] ["window-submode" 2]]
+                 [:7 [:yabai "window --space 7 --focus"] ["window-submode" 2]]
+                 [:8 [:yabai "window --space 8 --focus"] ["window-submode" 2]]
+                 [:9 [:yabai "window --space 9 --focus"] ["window-submode" 2]]
+                 [:0 [:yabai "window --space 10 --focus"] ["window-submode" 2]]]}
 
         {:des "window execute mode"
          :rules [:window-mode
