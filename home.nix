@@ -27,6 +27,7 @@ in {
     home.packages = with pkgs; [
       nodejs
       neovim
+      obsidian
 
       # Utilities
       ranger

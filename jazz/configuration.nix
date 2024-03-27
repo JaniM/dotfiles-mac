@@ -1,0 +1,7 @@
+{ pkgs, ... }:
+
+{
+  homebrew.casks = [
+    "steam"
+  ];
+}

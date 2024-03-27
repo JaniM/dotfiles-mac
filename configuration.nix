@@ -11,8 +11,8 @@
     onActivation.cleanup = "uninstall";
     brews = [];
     casks = [
-      { name = "tidal"; greedy = true; }
-      { name = "obsidian"; greedy = true; }
+      { name = "tidal"; }
+      { name = "ticktick"; }
     ];
   };
 
