@@ -8,6 +8,7 @@
 
   homebrew = {
     enable = true;
+    onActivation.cleanup = "uninstall";
     brews = [];
     casks = [
       { name = "tidal"; greedy = true; }
