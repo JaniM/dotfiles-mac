@@ -1,10 +1,26 @@
 { pkgs, ... }:
 
 # See https://github.com/LnL7/nix-darwin/tree/master/modules
-{
+let
+  scriptDerivation = name: path: pkgs.stdenv.mkDerivation {
+    name = name;
+    src = path;
+    installPhase = ''
+      mkdir -p $out/bin
+      cp * $out/bin
+    '';
+  };
+in {
   environment.systemPackages =
     [ pkgs.vim
     ];
+
+  fonts.fontDir.enable = true;
+  fonts.fonts = [
+    # Noto for terminal
+    # Sketchybar requires Hack Nerd Font
+    (pkgs.nerdfonts.override { fonts = [ "Noto" "Hack" ]; })
+  ];
 
   homebrew = {
     enable = true;
@@ -40,6 +56,12 @@
     yabai -m rule --add app='^System Settings$' manage=off
   '';
 
+  services.sketchybar = {
+    enable = true;
+    extraPackages = [(scriptDerivation "sketchybar-plugins" ./sketchybar/plugins)];
+    config = builtins.readFile ./sketchybar/config.sh;
+  };
+
   services.karabiner-elements.enable = true;
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
@@ -62,6 +84,9 @@
   };
 
   system.defaults = {
+    # Let sketchybar manage the status bar
+    NSGlobalDomain._HIHideMenuBar = true;
+
     NSGlobalDomain.ApplePressAndHoldEnabled = false;
     NSGlobalDomain.InitialKeyRepeat = 20;
     NSGlobalDomain.KeyRepeat = 2;

@@ -40,9 +40,6 @@ in {
 
       # Karabiner Elements configuration
       (if isDarwin then goku else pkgs.null)
-
-      # Fonts
-      (nerdfonts.override { fonts = [ "Noto" ]; })
     ];
 
     home.file = {
