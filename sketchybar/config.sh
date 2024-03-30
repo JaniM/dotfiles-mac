@@ -4,6 +4,8 @@
 # For a (much) more advanced configuration example see my dotfiles:
 # https://github.com/FelixKratz/dotfiles
 
+FONT="Hack Nerd Font"
+
 ##### Bar Appearance #####
 # Configuring the general appearance of the bar.
 # These are only some of the options available. For all options see:
@@ -21,8 +23,8 @@ sketchybar --bar position=top height=40 blur_radius=30 color=0x40000000
 default=(
 	padding_left=5
 	padding_right=5
-	icon.font="Hack Nerd Font:Bold:17.0"
-	label.font="Hack Nerd Font:Bold:14.0"
+	icon.font="$FONT:Bold:17.0"
+	label.font="$FONT:Bold:14.0"
 	icon.color=0xffffffff
 	label.color=0xffffffff
 	icon.padding_left=4
@@ -42,17 +44,23 @@ for i in "${!SPACE_ICONS[@]}"; do
 	sid="$(($i + 1))"
 	space=(
 		space="$sid"
+		label.font="sketchybar-app-font:Regular:15.0"
+		label.drawing=on
 		icon="${SPACE_ICONS[i]}"
 		icon.padding_left=7
 		icon.padding_right=7
-		background.color=0x40ffffff
+		icon.y_offset=0
+		label.y_offset=-1
+		background.padding_left=3
+		background.padding_right=3
 		background.corner_radius=5
-		background.height=25
-		label.drawing=off
+		background.height=24
 		script="space.sh"
 		click_script="yabai -m space --focus $sid"
 	)
-	sketchybar --add space space."$sid" left --set space."$sid" "${space[@]}"
+	sketchybar --add space space."$sid" left \
+		--set space."$sid" "${space[@]}" \
+		--subscribe space."$sid" front_app_switched
 done
 
 ##### Adding Left Items #####

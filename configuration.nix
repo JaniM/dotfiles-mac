@@ -20,6 +20,7 @@ in {
     # Noto for terminal
     # Sketchybar requires Hack Nerd Font
     (pkgs.nerdfonts.override { fonts = [ "Noto" "Hack" ]; })
+    pkgs.sketchybar-app-font
   ];
 
   homebrew = {
@@ -46,19 +47,27 @@ in {
     window_opacity      = "on";
     active_window_opacity = 1;
     normal_window_opacity = 0.9;
-    top_padding         = 0;
-    bottom_padding      = 0;
-    left_padding        = 0;
-    right_padding       = 0;
+    top_padding         = 10;
+    bottom_padding      = 10;
+    left_padding        = 10;
+    right_padding       = 10;
     window_gap          = 10;
   };
   services.yabai.extraConfig = ''
     yabai -m rule --add app='^System Settings$' manage=off
+
+    # sketchybar event-s (.yabairc)
+    yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
+    yabai -m signal --add event=window_minimized action="sketchybar -m --trigger window_focus &> /dev/null"
+    yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
   '';
 
   services.sketchybar = {
     enable = true;
-    extraPackages = [(scriptDerivation "sketchybar-plugins" ./sketchybar/plugins)];
+    extraPackages = [
+      (scriptDerivation "sketchybar-plugins" ./sketchybar/plugins)
+      pkgs.jq
+    ];
     config = builtins.readFile ./sketchybar/config.sh;
   };
 
