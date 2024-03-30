@@ -39,6 +39,10 @@ sketchybar --default "${default[@]}"
 # https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
 # to indicate active and available mission control spaces.
 
+sketchybar --add item ferris q --set ferris \
+	icon= label.drawing=off icon.color=0xFFE45928 \
+	padding_right=10
+
 SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
 for i in "${!SPACE_ICONS[@]}"; do
 	sid="$(($i + 1))"
@@ -50,7 +54,7 @@ for i in "${!SPACE_ICONS[@]}"; do
 		icon.padding_left=7
 		icon.padding_right=7
 		icon.y_offset=0
-		label.y_offset=-1
+		label.y_offset=0
 		background.padding_left=3
 		background.padding_right=3
 		background.corner_radius=5
@@ -60,7 +64,8 @@ for i in "${!SPACE_ICONS[@]}"; do
 	)
 	sketchybar --add space space."$sid" left \
 		--set space."$sid" "${space[@]}" \
-		--subscribe space."$sid" front_app_switched
+		--subscribe space."$sid" front_app_switched \
+		--subscribe space."$sid" space_windows_change
 done
 
 ##### Adding Left Items #####
