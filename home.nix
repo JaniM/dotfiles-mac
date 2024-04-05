@@ -37,6 +37,7 @@ in {
       ripgrep
       jq
       git-branchless
+      lazygit
 
       # Karabiner Elements configuration
       (if isDarwin then goku else pkgs.null)
