@@ -13,6 +13,7 @@
       "vim" = "nvim";
       "git" = "git-branchless wrap --";
       "update" = "${dotfiles}/install";
+      "dc" = "docker compose";
     };
     history.size = 10000;
     history.path = "${config.xdg.dataHome}/zsh/history";
