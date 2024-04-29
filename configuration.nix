@@ -26,7 +26,9 @@ in {
   homebrew = {
     enable = true;
     onActivation.cleanup = "uninstall";
-    brews = [];
+    brews = [
+      "imagemagick"
+    ];
     casks = [
       { name = "tidal"; }
       { name = "ticktick"; }
