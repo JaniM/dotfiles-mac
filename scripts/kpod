@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+if [ -z $1 ]; then
+  echo "Usage: kpod <namespace> <kubectl args>"
+  exit 1
+fi
+
+namespace=$1
+shift
+args=$@
+
+kubectl get pods -n $namespace \
+  | fzf -n1 --header-lines=1 --height=20 --reverse \
+  | awk '{print $1}' \
+  | xargs -I {} kubectl -n $namespace ${=args} {}
