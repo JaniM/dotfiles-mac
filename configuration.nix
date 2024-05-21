@@ -62,6 +62,9 @@ in {
     yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
     yabai -m signal --add event=window_minimized action="sketchybar -m --trigger window_focus &> /dev/null"
     yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
+
+    # 40pz padding for sketchybar
+    yabai -m config external_bar all:40:0
   '';
 
   services.sketchybar = {
