@@ -15,8 +15,7 @@ in {
     [ pkgs.vim
     ];
 
-  fonts.fontDir.enable = true;
-  fonts.fonts = [
+  fonts.packages = [
     # Noto for terminal
     # Sketchybar requires Hack Nerd Font
     (pkgs.nerdfonts.override { fonts = [ "Noto" "Hack" ]; })
@@ -31,6 +30,7 @@ in {
     ];
     casks = [
       { name = "tidal"; }
+      { name = "todoist"; }
     ];
   };
 
