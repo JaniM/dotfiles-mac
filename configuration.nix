@@ -31,7 +31,6 @@ in {
     ];
     casks = [
       { name = "tidal"; }
-      { name = "ticktick"; }
     ];
   };
 
