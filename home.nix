@@ -60,7 +60,7 @@ in {
     programs = {
       kitty = {
         enable = true;
-        font.name = "Noto Mono Regular";
+        font.name = "NotoMono Nerd Font";
         theme = "Gruvbox Material Dark Medium";
         extraConfig = ''
           hide_window_decorations titlebar-only

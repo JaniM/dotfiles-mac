@@ -31,6 +31,7 @@ in {
     casks = [
       { name = "tidal"; }
       { name = "todoist"; }
+      { name = "raycast"; }
     ];
   };
 

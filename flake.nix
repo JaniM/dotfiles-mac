@@ -2,10 +2,10 @@
   description = "Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -20,6 +20,7 @@
         { system.configurationRevision = self.rev or self.dirtyRev or null; }
 
         ./configuration.nix
+        ./overlays.nix
         (include (root + "/configuration.nix"))
 
         home-manager.darwinModules.home-manager
