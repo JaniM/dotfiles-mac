@@ -30,14 +30,15 @@ in {
       obsidian
 
       # Utilities
-      ranger
       bat
-      tldr
+      black
       fzf
-      ripgrep
-      jq
       git-branchless
+      jq
       lazygit
+      ranger
+      ripgrep
+      tldr
 
       # Karabiner Elements configuration
       (if isDarwin then goku else pkgs.null)
