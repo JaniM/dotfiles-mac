@@ -1,5 +1,5 @@
 # config = the whole home-manager configuration
-{ config, pkgs, lib, modules, ... }:
+{ config, pkgs, pkgs-unstable, lib, modules, ... }:
 
 let
   isDarwin = pkgs.stdenv.targetPlatform.isDarwin;
@@ -26,7 +26,7 @@ in {
   config = {
     home.packages = with pkgs; [
       nodejs
-      neovim
+      pkgs-unstable.neovim
       obsidian
 
       # Utilities

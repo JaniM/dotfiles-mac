@@ -3,17 +3,19 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager }:
   let
     include = path: if builtins.pathExists path then path else null;
     withoutNulls = list: builtins.filter (x: x != null) list;
 
+    system = "aarch64-darwin";
     mkSystem = root: nix-darwin.lib.darwinSystem {
       modules = withoutNulls [
         # Set Git commit hash for darwin-version.
@@ -29,7 +31,10 @@
           home-manager.useUserPackages = true;
           home-manager.users.janimustonen = import ./home.nix;
 
-          home-manager.extraSpecialArgs.modules = [(root + "/home.nix")];
+          home-manager.extraSpecialArgs = {
+            modules = [(root + "/home.nix")];
+            pkgs-unstable = import nixpkgs-unstable { inherit system; };
+          };
         }
       ];
     };
