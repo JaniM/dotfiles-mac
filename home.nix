@@ -32,7 +32,6 @@ in {
       # Utilities
       bat
       black
-      fzf
       git-branchless
       jq
       lazygit
@@ -79,6 +78,11 @@ in {
 
       thefuck.enable = true;
       zoxide.enable = true;
+
+      fzf = {
+        enable = true;
+        enableZshIntegration = true;
+      };
 
       direnv = {
         enable = true;
