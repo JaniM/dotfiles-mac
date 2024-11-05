@@ -81,6 +81,7 @@ in {
   nix.package = pkgs.nix;
 
   nix.settings.experimental-features = "nix-command flakes";
+  nix.settings.auto-optimise-store = true;
 
   programs.zsh.enable = true;
 
