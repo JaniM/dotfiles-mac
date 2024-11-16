@@ -32,6 +32,7 @@ in {
       { name = "tidal"; }
       { name = "todoist"; }
       { name = "raycast"; }
+      { name = "readdle-spark"; }
     ];
   };
 
