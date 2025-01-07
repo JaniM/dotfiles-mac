@@ -38,6 +38,7 @@ in {
       ranger
       ripgrep
       tldr
+      poetry
 
       # Karabiner Elements configuration
       (if isDarwin then goku else pkgs.null)
