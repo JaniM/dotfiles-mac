@@ -18,7 +18,8 @@ in {
   fonts.packages = [
     # Noto for terminal
     # Sketchybar requires Hack Nerd Font
-    (pkgs.nerdfonts.override { fonts = [ "Noto" "Hack" ]; })
+    pkgs.nerd-fonts.noto
+    pkgs.nerd-fonts.hack
     pkgs.sketchybar-app-font
   ];
 
@@ -78,7 +79,6 @@ in {
   };
 
   services.karabiner-elements.enable = true;
-  services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 
   nix.settings.experimental-features = "nix-command flakes";
