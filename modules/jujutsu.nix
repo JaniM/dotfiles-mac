@@ -11,8 +11,8 @@
       revsets = {
         log = ''
           @ | trunk()
-            | ancestors(branches(), 2)
-            | (ancestors(immutable_heads().., 2) ~ ::(remote_branches() ~ branches()))
+            | ancestors(bookmarks(), 2)
+            | (ancestors(immutable_heads().., 2) ~ ::(remote_bookmarks() ~ bookmarks()))
         '';
       };
       revset-aliases = {
