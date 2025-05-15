@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-old.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -10,7 +11,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, ... }:
   let
     include = path: if builtins.pathExists path then path else null;
     withoutNulls = list: builtins.filter (x: x != null) list;
@@ -22,7 +23,7 @@
         { system.configurationRevision = self.rev or self.dirtyRev or null; }
 
         ./configuration.nix
-        ./overlays.nix
+        (import ./overlays.nix { inherit inputs; })
         (include (root + "/configuration.nix"))
 
         home-manager.darwinModules.home-manager
