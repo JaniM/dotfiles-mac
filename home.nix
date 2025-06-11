@@ -62,7 +62,7 @@ in {
       kitty = {
         enable = true;
         font.name = "NotoMono Nerd Font Mono";
-        theme = "Gruvbox Material Dark Medium";
+        themeFile = "GruvboxMaterialDarkMedium";
         extraConfig = ''
           hide_window_decorations titlebar-only
         '';
@@ -77,7 +77,6 @@ in {
         ];
       };
 
-      thefuck.enable = true;
       zoxide.enable = true;
 
       fzf = {

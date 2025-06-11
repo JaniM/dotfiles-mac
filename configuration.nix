@@ -94,6 +94,7 @@ in {
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
 
+  system.primaryUser = "janimustonen";
   users.users.janimustonen = {
     name = "janimustonen";
     home = "/Users/janimustonen";
