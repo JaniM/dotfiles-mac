@@ -2,8 +2,6 @@
 
 {
   system.primaryUser = "janimustonen";
-  homebrew.casks = [
-    "steam"
-  ];
+  homebrew.casks = [ ];
   services.tailscale.enable = true;
 }

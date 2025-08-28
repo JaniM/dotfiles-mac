@@ -32,7 +32,7 @@ in {
       # Utilities
       bat
       black
-      git-branchless
+      # git-branchless
       jq
       lazygit
       ranger
@@ -77,7 +77,6 @@ in {
         ];
       };
 
-      thefuck.enable = true;
       zoxide.enable = true;
 
       fzf = {

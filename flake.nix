@@ -44,5 +44,6 @@
     # $ darwin-rebuild build --flake .
     darwinConfigurations."jazz" = mkSystem ./jazz;
     darwinConfigurations."treble" = mkSystem ./treble;
+    darwinConfigurations."seequ" = mkSystem ./treble;
   };
 }
