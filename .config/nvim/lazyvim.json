@@ -2,11 +2,12 @@
   "extras": [
     "lazyvim.plugins.extras.editor.harpoon2",
     "lazyvim.plugins.extras.lang.markdown",
-    "lazyvim.plugins.extras.lang.svelte"
+    "lazyvim.plugins.extras.lang.svelte",
+    "lazyvim.plugins.extras.lang.vue"
   ],
   "install_version": 7,
   "news": {
-    "NEWS.md": "10960"
+    "NEWS.md": "11866"
   },
   "version": 8
 }

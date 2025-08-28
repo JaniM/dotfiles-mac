@@ -40,5 +40,5 @@ if ! type darwin-rebuild > /dev/null; then
   exit 0
 fi
 
-darwin-rebuild switch --flake $dotfiles
+sudo darwin-rebuild switch --flake $dotfiles
 
