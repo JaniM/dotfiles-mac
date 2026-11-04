@@ -5,9 +5,9 @@ let
 in {
   programs.git = {
     enable = true;
-    aliases.co = "checkout";
-    aliases.st = "status";
-    aliases.lg = removeNewlines ''
+    settings.alias.co = "checkout";
+    settings.alias.st = "status";
+    settings.alias.lg = removeNewlines ''
       log --graph --abbrev-commit --decorate --date=relative
         --format=format:'%C(bold blue)%h%C(reset)
         - %C(bold green)(%ar)%C(reset)
@@ -15,7 +15,7 @@ in {
         %C(dim white)-
         %an%C(reset)%C(bold yellow)%d%C(reset)'
     '';
-    userName = config.identity.name;
-    userEmail = config.identity.email;
+    settings.user.name = config.identity.name;
+    settings.user.email = config.identity.email;
   };
 }
