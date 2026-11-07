@@ -84,6 +84,13 @@ in {
   nix.settings.experimental-features = "nix-command flakes";
   nix.optimise.automatic = true;
 
+  nix.linux-builder = {
+    enable = true;
+    systems = [ "aarch64-linux" "x86_64-linux" ];
+    config.boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
+  };
+  nix.settings.trusted-users = [ "@admin" ];
+
   programs.zsh.enable = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
