@@ -39,6 +39,7 @@ in {
       ripgrep
       tldr
       poetry
+      comma
 
       # Karabiner Elements configuration
       (if isDarwin then goku else pkgs.null)

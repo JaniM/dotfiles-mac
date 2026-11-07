@@ -11,9 +11,9 @@ let
     '';
   };
 in {
-  environment.systemPackages =
-    [ pkgs.vim
-    ];
+  environment.systemPackages = with pkgs; [
+    vim
+  ];
 
   fonts.packages = [
     # Noto for terminal
